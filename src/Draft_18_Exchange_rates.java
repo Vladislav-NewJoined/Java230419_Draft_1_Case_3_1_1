@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-//Взято отсюда: https://russianblogs.com/article/9901498089/
-//Здесь Ищем день в Case_3_1_1, когда наибольший перепад был.
 public class Draft_18_Exchange_rates {
 public static void main(String[] args) throws IOException, ParseException {
 // Кейс «Анализатор курса валют».
