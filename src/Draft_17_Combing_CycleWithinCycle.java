@@ -90,7 +90,7 @@ public static void main(String[] args) throws IOException, ParseException {
     double min=minDifference(listCourses);
     DecimalFormat df = new DecimalFormat("0.000");
     df.setRoundingMode(RoundingMode.DOWN);
-    System.out.println("За указанный месяц курс максимально вырос между двумя соседними датами на величину: " + df.format(max));
+    System.out.println("\nЗа указанный месяц курс максимально вырос между двумя соседними датами на величину: " + df.format(max));
     System.out.println("За указанный месяц курс максимально упал между двумя соседними датами на величину: " + df.format(min));
 }
 //Пишем классы для поиска максимальных перепадов курса.
