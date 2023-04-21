@@ -33,17 +33,45 @@ public class Draft_14_Adding_max_Double {
 
         Double[] sourceArray ={12.,8., 1., 3., 18.};
         List<Double> data = new ArrayList<>(Arrays.asList(sourceArray));
-        double min=minDifference(data);
         double max=maxDifference(data);
-        System.out.println(min);
+        double min=minDifference(data);
         System.out.println(max);
+        System.out.println(min);
     }
 
+//Сначала максимальную разницу находим.
+    public static double maxDifference(List<Double> data){
+        if(data==null||data.size()==0){
+            return Double.MIN_VALUE;
+        }
+        int len=data.size();
+        double[] diff= new double[len - 1];
+        for(int i=0;i<len-1;i++){
+            diff[i]= data.get(i + 1) - data.get(i);
+        }
+        //System.out.println(Arrays.toString(diff));
+        return max(diff);
+    }
+    public static double max(double[] diff){
+        if(diff==null||diff.length==0){
+            return Double.MIN_VALUE;
+        }
+        double max=diff[0];
+        for(int i=0,len=diff.length;i<len;i++){
+            //not necessary,since 'int[] data' is sorted,so 'int[] diff' is progressively increased.
+            //int tmp=diff[i]>0?diff[i]:(-diff[i]);
+            if(max<diff[i]){
+                max=diff[i];
+            }
+        }
+        return max;
+    }
+
+//Теперь минимальную разницу находим.
     public static double minDifference(List<Double> data){
         if(data==null||data.size()==0){
             return Double.MIN_VALUE;
         }
-//        sort(data,0,data.size()-1);
         int len=data.size();
         double[] diff= new double[len - 1];
         for(int i=0;i<len-1;i++){
@@ -52,6 +80,7 @@ public class Draft_14_Adding_max_Double {
         //System.out.println(Arrays.toString(diff));
         return min(diff);
     }
+
     public static double min(double[] diff){
         if(diff==null||diff.length==0){
             return Double.MIN_VALUE;
@@ -65,33 +94,5 @@ public class Draft_14_Adding_max_Double {
             }
         }
         return min;
-    }
-
-//Теперь максимальную разницу находим.
-    public static double maxDifference(List<Double> data){
-        if(data==null||data.size()==0){
-            return Double.MAX_VALUE;
-        }
-        int len=data.size();
-        double[] diff= new double[len - 1];
-        for(int i=0;i<len-1;i++){
-            diff[i]= data.get(i + 1) - data.get(i);
-        }
-        //System.out.println(Arrays.toString(diff));
-        return max(diff);
-    }
-    public static double max(double[] diff){
-        if(diff==null||diff.length==0){
-            return Double.MAX_VALUE;
-        }
-        double max=diff[0];
-        for(int i=0,len=diff.length;i<len;i++){
-            //not necessary,since 'int[] data' is sorted,so 'int[] diff' is progressively increased.
-            //int tmp=diff[i]>0?diff[i]:(-diff[i]);
-            if(max<diff[i]){
-                max=diff[i];
-            }
-        }
-        return max;
     }
 }
