@@ -1,7 +1,6 @@
-import java.util.Arrays;
-
 //Взято отсюда: https://russianblogs.com/article/9901498089/
-public class Draft_10_Russianblogs {
+
+public class Draft_12_1_YES_Double_Static {
 
     /**
      * Тема: Найти минимальное абсолютное значение разницы между двумя элементами в массиве.
@@ -28,29 +27,29 @@ public class Draft_10_Russianblogs {
      */
     public static void main(String[] args) {
 
-        int[] data={1,2,4,8,15,20,18,-3,11};
-        int min=minDifference(data);
+        Double[] data={3., 5., 8., 12.};;
+        double min=minDifference(data);
         System.out.println(min);
     }
 
-    public static int minDifference(int[] data){
+    public static double minDifference(Double[] data){
         if(data==null||data.length==0){
-            return Integer.MIN_VALUE;
+            return Double.MIN_VALUE;
         }
         sort(data,0,data.length-1);
         int len=data.length;
-        int[] diff=new int[len-1];
+        double[] diff= new double[len - 1];
         for(int i=0;i<len-1;i++){
             diff[i]=data[i+1]-data[i];
         }
         //System.out.println(Arrays.toString(diff));
         return min(diff);
     }
-    public static int min(int[] diff){
+    public static double min(double[] diff){
         if(diff==null||diff.length==0){
-            return Integer.MIN_VALUE;
+            return Double.MIN_VALUE;
         }
-        int min=diff[0];
+        double min=diff[0];
         for(int i=0,len=diff.length;i<len;i++){
             //not necessary,since 'int[] data' is sorted,so 'int[] diff' is progressively increased.
             //int tmp=diff[i]>0?diff[i]:(-diff[i]);
@@ -62,7 +61,7 @@ public class Draft_10_Russianblogs {
     }
 
     //QuickSort.Of course we can use Arrays.sort(),but I write it for practice.
-    public static void sort(int[] x,int s,int e){
+    public static void sort(Double[] x, int s, int e){
         if(s>=e){
             return;
         }
@@ -84,8 +83,8 @@ public class Draft_10_Russianblogs {
         sort(x,j+1,e);
     }
 
-    public static void swap(int[] x,int i,int j){
-        int tmp=x[i];
+    public static void swap(Double[] x, int i, int j){
+        Double tmp=x[i];
         x[i]=x[j];
         x[j]=tmp;
     }

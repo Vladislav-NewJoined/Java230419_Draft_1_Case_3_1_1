@@ -1,3 +1,5 @@
+//Взято отсюда: https://russianblogs.com/article/9901498089/
+
 public class Draft_10_2_Edit_Russianblogs {
 
     /**

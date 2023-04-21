@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//Взято отсюда: https://russianblogs.com/article/9901498089/
 public class Draft_12_2_YES_Double_ArrayList {
 
     /**

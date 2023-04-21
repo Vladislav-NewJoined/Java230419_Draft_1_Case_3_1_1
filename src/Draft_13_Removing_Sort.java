@@ -1,4 +1,9 @@
-public class Draft_12_1_YES_Double_static {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+//Взято отсюда: https://russianblogs.com/article/9901498089/
+//Здесь мы убираем сортировку.
+public class Draft_13_Removing_Sort {
 
     /**
      * Тема: Найти минимальное абсолютное значение разницы между двумя элементами в массиве.
@@ -25,20 +30,21 @@ public class Draft_12_1_YES_Double_static {
      */
     public static void main(String[] args) {
 
-        Double[] data={3., 5., 8., 12.};;
+        Double[] sourceArray ={12.,8., 1., 3., 18.};
+        List<Double> data = new ArrayList<>(Arrays.asList(sourceArray));
         double min=minDifference(data);
         System.out.println(min);
     }
 
-    public static double minDifference(Double[] data){
-        if(data==null||data.length==0){
+    public static double minDifference(List<Double> data){
+        if(data==null||data.size()==0){
             return Double.MIN_VALUE;
         }
-        sort(data,0,data.length-1);
-        int len=data.length;
+//        sort(data,0,data.size()-1);
+        int len=data.size();
         double[] diff= new double[len - 1];
         for(int i=0;i<len-1;i++){
-            diff[i]=data[i+1]-data[i];
+            diff[i]= data.get(i + 1) - data.get(i);
         }
         //System.out.println(Arrays.toString(diff));
         return min(diff);
@@ -59,31 +65,31 @@ public class Draft_12_1_YES_Double_static {
     }
 
     //QuickSort.Of course we can use Arrays.sort(),but I write it for practice.
-    public static void sort(Double[] x, int s, int e){
-        if(s>=e){
-            return;
-        }
-        int i=s;
-        int j=e;
-        boolean flag=false;
-        while(i!=j){
-            if(x[i]>x[j]){
-                swap(x,i,j);
-                flag=!flag;
-            }
-            if(flag){
-                i++;
-            }else{
-                j--;
-            }
-        }
-        sort(x,s,i-1);
-        sort(x,j+1,e);
-    }
-
-    public static void swap(Double[] x, int i, int j){
-        Double tmp=x[i];
-        x[i]=x[j];
-        x[j]=tmp;
-    }
+//    public static void sort(List<Double> x, int s, int e){
+//        if(s>=e){
+//            return;
+//        }
+//        int i=s;
+//        int j=e;
+//        boolean flag=false;
+//        while(i!=j){
+//            if(x.get(i) > x.get(j)){
+//                swap(x,i,j);
+//                flag=!flag;
+//            }
+//            if(flag){
+//                i++;
+//            }else{
+//                j--;
+//            }
+//        }
+//        sort(x,s,i-1);
+//        sort(x,j+1,e);
+//    }
+//
+//    public static void swap(List<Double> x, int i, int j){
+//        Double tmp= x.get(i);
+//        x.set(i, x.get(j));
+//        x.set(j, tmp);
+//    }
 }
