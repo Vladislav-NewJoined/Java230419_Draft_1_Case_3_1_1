@@ -2,21 +2,22 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
 //Взято отсюда: https://russianblogs.com/article/9901498089/
-//Здесь "Причесываем" Case_3_1_1
-public class Draft_15_Case_3_1_1_Edit {
+//Здесь Сокращаем знаки после запятой в распечатанном перепаде курса.
+public class Draft_16_Combing_Case_3_1_1_farther {
 public static void main(String[] args) throws IOException, ParseException {
 // Кейс «Анализатор курса валют».
 // 3. Очень сложное:
@@ -85,14 +86,14 @@ public static void main(String[] args) throws IOException, ParseException {
         }
     }
 //Далее ищем максимальные перепады курса.
-    Double[] sourceArray ={12.,8., 1., 3., 18.};
-//    List<Double> listCourses = new ArrayList<>(Arrays.asList(sourceArray));
     double max=maxDifference(listCourses);
     double min=minDifference(listCourses);
-    System.out.println(max);
-    System.out.println(min);
+    DecimalFormat df = new DecimalFormat("0.000");
+    df.setRoundingMode(RoundingMode.DOWN);
+    System.out.println(df.format(max));
+    System.out.println(df.format(min));
 }
-//Задаем классы для поиска максимальных перепадов курса.
+//Пишем классы для поиска максимальных перепадов курса.
 //Сначала максимальную разницу находим.
 public static double maxDifference(List<Double> listCourses){
     if(listCourses==null||listCourses.size()==0){
@@ -116,6 +117,10 @@ public static double maxDifference(List<Double> listCourses){
             //int tmp=diff[i]>0?diff[i]:(-diff[i]);
             if(max<diff[i]){
                 max=diff[i];
+//                DecimalFormat df = new DecimalFormat("0.000");
+//                df.setRoundingMode(RoundingMode.DOWN);
+//                max=Double.parseDouble(df.format(max));
+//                System.out.println(df.format(max));
             }
         }
         return max;
