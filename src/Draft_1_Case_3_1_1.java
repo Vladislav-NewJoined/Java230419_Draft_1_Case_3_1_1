@@ -13,14 +13,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class Draft_1_Case_3_1_1 {
-public static void main(String[] args) throws IOException, ParseException {
 // Кейс «Анализатор курса валют».
 // 3. Очень сложное:
-//- Найти самые сильные скачки в этот промежуток, дни, когда курс сильно вырос или упал. Автоматически скачать текст статьи из википедии, отвечающей за факты на эту дату
+//- Найти самые сильные скачки в этот промежуток, дни, когда курс сильно вырос или упал.
+// Автоматически скачать текст статьи из википедии, отвечающей за факты на эту дату
 // Инфо здесь: Как найти анализ курса валют за определенную дату. Урок 6 Видео мин 0.44.56
-// https://lms.synergy.ru/student/updiscipline/4474947/1045153/1/1
+// Задание здесь: https://lms.synergy.ru/student/updiscipline/4474947/1045153/1/1
 //Здесь Java. Поиск второго по минимальности элемента в массиве. https://youtu.be/03iETRvZrFg
+public class Draft_1_Case_3_1_1 {
+public static void main(String[] args) throws IOException, ParseException {
     BufferedReader buffered = new BufferedReader(new InputStreamReader(System.in));
 
     System.out.println("Введите исходные месяц и год с разделителем '/', пример: 02/2020:");

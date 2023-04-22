@@ -21,7 +21,7 @@ import java.util.List;
 // Инфо здесь: Как найти анализ курса валют за определенную дату. Урок 6 Видео мин 0.44.56
 // Задание здесь: https://lms.synergy.ru/student/updiscipline/4474947/1045153/1/1
 
-public class Draft_18_Exchange_rates {
+public class Draft_20_Case_3_1_1_YES_Edit {
 
     public static void main(String[] args) throws IOException, ParseException {
         BufferedReader buffered = new BufferedReader(new InputStreamReader(System.in));
