@@ -24,7 +24,7 @@ public class Draft_19_5_ArticleFromWikipedia_Myself_Wikinews {
     public static void main(String[] args) throws IOException {
         String pageDiff = downloadWebPage("https://ru.wikinews.org/wiki/Лента_новостей_31_марта_2023_года");
         writeToFile(pageDiff);
-        LocalDate dateDiff = parse("2023-03-31");
+        LocalDate dateDiff = LocalDate.parse("2023-03-31");
 //Форматирование даты здесь: https://www.youtube.com/watch?v=Wh2zd2oZOmo
         System.out.println(dateDiff);
         System.out.println("Article saved!");
