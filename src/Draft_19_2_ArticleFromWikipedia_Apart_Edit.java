@@ -18,6 +18,7 @@ public class Draft_19_2_ArticleFromWikipedia_Apart_Edit {
 // Инфо здесь: Как найти анализ курса валют за определенную дату. Урок 6 Видео мин 0.44.56
 // Задание здесь: https://lms.synergy.ru/student/updiscipline/4474947/1045153/1/1
 //Здесь Java. Поиск второго по минимальности элемента в массиве. https://youtu.be/03iETRvZrFg
+//Статья из Википедии здесь: https://ru.wikipedia.org/wiki/%D0%A4%D0%B5%D0%B2%D1%80%D0%B0%D0%BB%D1%8C_2021_%D0%B3%D0%BE%D0%B4%D0%B0
     public static void main(String[] args) throws IOException, ParseException {
         String originalString = downloadWebPage("https://ru.wikipedia.org/wiki/%D0%A4%D0%B5%D0%B2%D1%80%D0%B0%D0%BB%D1%8C_2021_%D0%B3%D0%BE%D0%B4%D0%B0");
 //https://ru.wikipedia.org/wiki/8_февраля
