@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
-public class Draft_2_MaxMin_Differ_Apart {
+public class Draft_3_MaxMin_Differ_Apart {
     // Кейс «Анализатор курса валют».
     // 3. Очень сложное:
     //- Найти самые сильные скачки в этот промежуток, дни, когда курс сильно вырос или упал. Автоматически скачать текст статьи из википедии, отвечающей за факты на эту дату
