@@ -29,7 +29,7 @@ public class Draft_1_Case_3_1_1_WithDifference {
         System.out.println("Введите исходные месяц и год с разделителем '/', пример: 02/2020:");
         String origMonth = buffered.readLine();  // Start month
 
-        // Делаем парсинг введённой строки методом Split.
+// Делаем парсинг введённой строки методом Split.
         String[] items = origMonth.split("/");
         String mon = items[0];
         String yea = items[1];
