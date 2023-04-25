@@ -16,22 +16,7 @@ public class Draft_26_StringToLocalDate {
         String mon = items[1];
         String yea = items[2];
         String dtStr2 = (yea + "-" + mon + "-" + dat);
-        System.out.println(dtStr2);
+        System.out.println(dtStr2); //2023-03-31
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
-        LocalDate ld = LocalDate.parse(dtStr2, formatter);
-        System.out.println(ld);
-
-//        String dtStr2 = dtStr.replaceAll("/", "-");
-//        System.out.println(dtStr2);
-//        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
-//        LocalDate dtLocal;
-//        dtLocal = LocalDate.parse(dtStr2, formatter);
-
-
-//        System.out.println(dtLocal);
-
-//        Date dtDate = new SimpleDateFormat("dd/MM/yyyy").parse(dtStr);
-//        System.out.println(dtStr + "\t" + dtDate);
     }
 }
