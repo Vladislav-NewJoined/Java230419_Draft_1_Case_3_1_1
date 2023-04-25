@@ -12,11 +12,8 @@ import java.util.Date;
 public class Draft_24_Date_Format_My {
     public static void main(String[] args) throws IOException, ParseException {
 
-//        String dtStr = "31/03/2023";
-//        Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dtStr);
-//        System.out.println(dtStr);
-
-        LocalDate localDate2 = LocalDate.now();
+        String dtStr = "2023-03-31";
+        LocalDate localDate2 = LocalDate.parse(dtStr);
 
         DateTimeFormatter formatter5 = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
         String formattedDate5 = formatter5.format(localDate2);
