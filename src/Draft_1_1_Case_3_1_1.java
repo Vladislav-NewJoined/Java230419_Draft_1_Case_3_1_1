@@ -20,7 +20,7 @@ import java.util.List;
 // Инфо здесь: Как найти анализ курса валют за определенную дату. Урок 6 Видео мин 0.44.56
 // Задание здесь: https://lms.synergy.ru/student/updiscipline/4474947/1045153/1/1
 //Здесь Java. Поиск второго по минимальности элемента в массиве. https://youtu.be/03iETRvZrFg
-public class Draft_1_Case_3_1_1 {
+public class Draft_1_1_Case_3_1_1 {
 public static void main(String[] args) throws IOException, ParseException {
     BufferedReader buffered = new BufferedReader(new InputStreamReader(System.in));
 
