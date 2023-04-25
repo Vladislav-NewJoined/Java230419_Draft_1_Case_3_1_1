@@ -89,6 +89,7 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
 
 
 //НАХОДИМ ДАТЫ МАКСИМАЛЬНОГО РОСТА И ПАДЕНИЯ КУРСА И СКАЧИВАЕМ СТРАНИЦЫ ИЗ WIKINEWS.
+//СОХРАНЯЕМ СТРАНИЦУ ИЗ ВИКИПЕДИИ MAX
         String dtStrMax = "18/03/2023"; //Объявляем дату, когда курс максимально вырос
         String[] items2 = dtStrMax.split("/");
         String dat2 = items2[0];
@@ -105,18 +106,17 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
         String dat3 = items3[0];
         String mon3 = items3[1];
         String yea3 = items3[2];
-        String gFirst = items3[3];
-        String g3 = gFirst.replace("г.", "года");
+        String gFirst3 = items3[3];
+        String g3 = gFirst3.replace("г.", "года");
 
         String dtStrForChangeMax = (dat3 + "_" + mon3 + "_" + yea3 + "_" + g3);
 
-        //СОХРАНЯЕМ СТРАНИЦЫ ИЗ ВИКИПЕДИИ MAX
         //        String pageWikiOrigin = downloadWebPage("https://ru.wikinews.org/wiki/Лента_новостей_31_марта_2023_года");
         String pageWikiOriginText = "https://ru.wikinews.org/wiki/Лента_новостей_31_марта_2023_года";
         String pageWikiOriginChangedTextMax = pageWikiOriginText.replaceAll("31_марта_2023_года", dtStrForChangeMax);
         String pageWikiOriginChanged1 = downloadWebPage(pageWikiOriginChangedTextMax);
-        writeToFile(pageWikiOriginChanged1);
 
+//СОХРАНЯЕМ СТРАНИЦЫ ИЗ ВИКИПЕДИИ MIN
         String dtStrMin = "03/03/2023"; //Объявляем дату, когда курс максимально упал
         String[] items4 = dtStrMin.split("/");
         String dat4 = items4[0];
@@ -133,16 +133,19 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
         String dat5 = items5[0];
         String mon5 = items5[1];
         String yea5 = items5[2];
-        String gSecond = items5[3];
-        String g5 = gSecond.replace("г.", "года");
+        String gSecond5 = items5[3];
+        String g5 = gSecond5.replace("г.", "года");
 
         String dtStrForChangeMin = (dat5 + "_" + mon5 + "_" + yea5 + "_" + g5);
 
-//СОХРАНЯЕМ СТРАНИЦЫ ИЗ ВИКИПЕДИИ MIN
 //        String pageWikiOrigin = downloadWebPage("https://ru.wikinews.org/wiki/Лента_новостей_31_марта_2023_года");
 //        String pageWikiOriginText = "https://ru.wikinews.org/wiki/Лента_новостей_31_марта_2023_года";
         String pageWikiOriginChangedTextMin = pageWikiOriginText.replaceAll("31_марта_2023_года", dtStrForChangeMin);
         String pageWikiOriginChanged2 = downloadWebPage(pageWikiOriginChangedTextMin);
+
+
+//Подытоживаем
+        writeToFile(pageWikiOriginChanged1);
         writeToFile(pageWikiOriginChanged2);
 
         System.out.println("\n" + pageWikiOriginChangedTextMax);
