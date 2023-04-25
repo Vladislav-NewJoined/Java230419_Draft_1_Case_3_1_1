@@ -1,5 +1,5 @@
 import java.time.LocalDate;
-
+//инфо здесь: https://www.youtube.com/watch?v=fWka04WxOyE
 public class Draft_27_LocalData_Initialization {
     public static void main(String[] args) {
         String dtStr = "2023-03-31";
