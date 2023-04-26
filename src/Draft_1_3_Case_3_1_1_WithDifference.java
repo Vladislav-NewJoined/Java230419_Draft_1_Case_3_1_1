@@ -158,9 +158,7 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
         writer2.write(pageWikiOriginChanged2);
         writer2.close();
 
-        System.out.println("\nСтраница max сохранена!");
-        System.out.println("Страница min сохранена!");
-
+        System.out.println("\nСтраницы из Википедии сохранены");
     }
 
 //Пишем классы для поиска максимальных перепадов курса.
@@ -210,7 +208,6 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
         }
         double min = diff[0];
         for (int i = 0, len = diff.length; i < len; i++) {
-            //not necessary,since 'int[] data' is sorted,so 'int[] diff' is progressively increased.
             //int tmp=diff[i]>0?diff[i]:(-diff[i]);
             if (min > diff[i]) {
                 min = diff[i];
