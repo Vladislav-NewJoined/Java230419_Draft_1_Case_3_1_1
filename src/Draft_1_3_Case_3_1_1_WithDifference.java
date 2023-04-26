@@ -35,12 +35,12 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
         int monI = Integer.parseInt(mon);
         int yeaI = Integer.parseInt(yea);
 
-        // Преобразовываем ввод через переменную YearMonth.
+// Преобразовываем ввод через переменную YearMonth.
         YearMonth ym = YearMonth.of(yeaI, monI);
 
-        // Скачиваем исходный код веб-страницы Центробанка.
+// Скачиваем исходный код веб-страницы Центробанка.
         String originalPage = downloadWebPage("https://cbr.ru/scripts/XML_dynamic.asp?date_req1=12/11/2021&date_req2=12/11/2021&VAL_NM_RQ=R01235");
-        // Задаём адрес исходной веб-страницы Центробанка в текстовом формате.
+// Задаём адрес исходной веб-страницы Центробанка в текстовом формате.
         String originalPageText = "https://cbr.ru/scripts/XML_dynamic.asp?date_req1=12/11/2021&date_req2=12/11/2021&VAL_NM_RQ=R01235";
 
 //    get the last day of month
@@ -63,7 +63,7 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
             String nextDate;
             nextDate = sdf.format(c.getTime());  // entering nextDate
 
-            // Меняем в адресе исходной страницы дату на следующую.
+// Меняем в адресе исходной страницы дату на следующую.
             String urlWithNextDate = originalPageText.replaceAll("12/11/2021", nextDate);
 
             String nextPage = downloadWebPage(urlWithNextDate);
@@ -86,7 +86,6 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
         df.setRoundingMode(RoundingMode.DOWN);
         System.out.println("\nЗа указанный месяц курс максимально вырос между двумя соседними датами на величину: " + df.format(max) + ", это пришлось на дату: ");
         System.out.println("За указанный месяц курс максимально упал между двумя соседними датами на величину: " + df.format(min) + ", это пришлось на дату: ");
-
 
 //НАХОДИМ ДАТЫ МАКСИМАЛЬНОГО РОСТА И ПАДЕНИЯ КУРСА И СКАЧИВАЕМ СТРАНИЦЫ ИЗ WIKINEWS.
 //СОХРАНЯЕМ СТРАНИЦУ ИЗ ВИКИПЕДИИ MAX
@@ -111,7 +110,6 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
 
         String dtStrForChangeMax = (dat3 + "_" + mon3 + "_" + yea3 + "_" + g3);
 
-        //        String pageWikiOrigin = downloadWebPage("https://ru.wikinews.org/wiki/Лента_новостей_31_марта_2023_года");
         String pageWikiOriginText = "https://ru.wikinews.org/wiki/Лента_новостей_31_марта_2023_года";
         String pageWikiOriginChangedTextMax = pageWikiOriginText.replaceAll("31_марта_2023_года", dtStrForChangeMax);
         String pageWikiOriginChanged1 = downloadWebPage(pageWikiOriginChangedTextMax);
@@ -138,28 +136,34 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
 
         String dtStrForChangeMin = (dat5 + "_" + mon5 + "_" + yea5 + "_" + g5);
 
-//        String pageWikiOrigin = downloadWebPage("https://ru.wikinews.org/wiki/Лента_новостей_31_марта_2023_года");
-//        String pageWikiOriginText = "https://ru.wikinews.org/wiki/Лента_новостей_31_марта_2023_года";
         String pageWikiOriginChangedTextMin = pageWikiOriginText.replaceAll("31_марта_2023_года", dtStrForChangeMin);
         String pageWikiOriginChanged2 = downloadWebPage(pageWikiOriginChangedTextMin);
 
-
 //Подытоживаем
-        writeToFile(pageWikiOriginChanged1);
-        writeToFile(pageWikiOriginChanged2);
-
-        System.out.println("\n" + pageWikiOriginChangedTextMax);
+        System.out.println("\nСтраницы, которые будут сохраняться в файлах: ");
+        System.out.println(pageWikiOriginChangedTextMax);
         System.out.println(pageWikiOriginChangedTextMin);
 
         System.out.println("\n" + dtStrForChangeMax + " " + "- в этот день курс вырос.");
         System.out.println(dtStrForChangeMin + " " + "- в этот день курс упал.");
+
+// создаём новый буферизированный объект
+        BufferedWriter writer1 = new BufferedWriter(new FileWriter("pageGrowthRate.html"));
+// добавляем название переменной со страницей, которую сохраняем
+        writer1.write(pageWikiOriginChanged1);
+// закрываем writer
+        writer1.close();
+
+        BufferedWriter writer2 = new BufferedWriter(new FileWriter("pageDeclineRate.html"));
+        writer2.write(pageWikiOriginChanged2);
+        writer2.close();
 
         System.out.println("\nСтраница max сохранена!");
         System.out.println("Страница min сохранена!");
 
     }
 
-    //Пишем классы для поиска максимальных перепадов курса.
+//Пишем классы для поиска максимальных перепадов курса.
 //Сначала максимальную разницу находим.
     public static double maxDifference(List<Double> listCourses) {
         if (listCourses == null || listCourses.size() == 0) {
@@ -187,7 +191,7 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
         return max;
     }
 
-    //Теперь минимальную разницу находим.
+//Теперь минимальную разницу находим.
     public static double minDifference(List<Double> listCourses) {
         if (listCourses == null || listCourses.size() == 0) {
             return Double.MIN_VALUE;
@@ -226,15 +230,5 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
             }
         }
         return result.toString();
-    }
-
-    public static void writeToFile(String str) throws IOException {
-        BufferedWriter writer1 = new BufferedWriter(new FileWriter("pageDiff1.html"));
-        writer1.write(str);
-        writer1.close();
-//    public static void writeToFile(String str) throws IOException {
-        BufferedWriter writer2 = new BufferedWriter(new FileWriter("pageDiff2.html"));
-        writer2.write(str);
-        writer2.close();
     }
 }
