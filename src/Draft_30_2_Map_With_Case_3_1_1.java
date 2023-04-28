@@ -9,9 +9,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 // Кейс «Анализатор курса валют».
 // 3. Очень сложное:
@@ -19,7 +17,7 @@ import java.util.List;
 // Инфо здесь: Как найти анализ курса валют за определенную дату. Урок 6 Видео мин 0.44.56
 // Задание здесь: https://lms.synergy.ru/student/updiscipline/4474947/1045153/1/1
 
-public class Draft_1_1_Case_3_1_1 {
+public class Draft_30_2_Map_With_Case_3_1_1 {
 
     public static void main(String[] args) throws IOException, ParseException {
         BufferedReader buffered = new BufferedReader(new InputStreamReader(System.in));
@@ -50,11 +48,32 @@ public class Draft_1_1_Case_3_1_1 {
         int lastDay = ym.lengthOfMonth();
 //    Создаем массив ArrayList, куда записываем в качестве элементов курс на текущую дату.
         List<Double> listCourses = new ArrayList<>();
+        Map<String, Double> mapDateRate = new HashMap<>(); // todo удалить
+
+// КАК НАЙТИ ДАТУ НА ДЕНЬ РАНЬШЕ.
+//        int dayFirst = 1; // todo удалить
+//        LocalDate dayFirstLD = ym.atDay(dayFirst); // todo удалить
+//        LocalDate dayMinusOne = dayFirstLD - 1; // todo удалить
+//        System.out.println(dayFirstLD); // todo удалить
+
+
+//        Calendar cal  = Calendar.getInstance(); // todo удалить
+//        //subtracting a day // todo удалить
+//        cal.add(Calendar.DATE, -1); // todo удалить
+//         // todo удалить
+//        SimpleDateFormat s = new SimpleDateFormat("yyyyMMdd"); // todo удалить
+
+
+
+
 
 //    loop through the days
         for (int day = 1; day <= lastDay; day++) {
             // create the day
             LocalDate dt = ym.atDay(day);
+//            System.out.println(dt); // todo удалить
+
+
             DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             String dtStr = dt.format(f);
             // set to midnight at JVM default timezone
@@ -65,7 +84,6 @@ public class Draft_1_1_Case_3_1_1 {
             c.setTime(sdf.parse(String.valueOf(dtStr)));
             String nextDate;
             nextDate = sdf.format(c.getTime());  // entering nextDate
-
 // Меняем в адресе исходной страницы дату на следующую.
             String urlWithNextDate = originalPageText.replaceAll("12/11/2021", nextDate);
 
@@ -76,6 +94,8 @@ public class Draft_1_1_Case_3_1_1 {
                 // Задаём курс в виде переменной Double.
                 double courseNextDoble = Double.parseDouble(courseNextPage.replace(",", "."));
                 System.out.println("Курс на " + nextDate + "    " + courseNextDoble);
+// Здесь: Как найти из мапы перепады курса: https://ru.stackoverflow.com/questions/1515527/%d0%9d%d0%b0%d0%b9%d1%82%d0%b8-%d1%80%d0%b5%d1%88%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b2-%d1%86%d0%b8%d0%ba%d0%bb%d0%b5-%d1%81-%d0%b4%d0%b0%d1%82%d0%b0%d0%bc%d0%b8
+                mapDateRate.put(nextDate, courseNextDoble); // todo удалить
                 listCourses.add(courseNextDoble);
             } else {
                 String courseNextPage = "";

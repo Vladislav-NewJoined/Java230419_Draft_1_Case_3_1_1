@@ -28,6 +28,8 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
         String origMonth = buffered.readLine();  // Start month
 
 // Делаем парсинг введённой строки методом Split.
+// Вот здесь указаны курсы рубля по всем датам месяца, т.е. целиком месяц выводится на экран:
+// https://cbr.ru/scripts/XML_dynamic.asp?date_req1=28/02/2023&date_req2=31/03/2023&VAL_NM_RQ=R01235
         String[] items = origMonth.split("/");
         String mon = items[0];
         String yea = items[1];
@@ -39,6 +41,8 @@ public class Draft_1_3_Case_3_1_1_WithDifference {
         YearMonth ym = YearMonth.of(yeaI, monI);
 
 // Скачиваем исходный код веб-страницы Центробанка.
+// Скачиваем исходный код веб-страницы Центробанка.
+// Вот здесь указаны курсы рубля по всем датам месяца, т.е. целиком месяц выводится на экран:
         String originalPage = downloadWebPage("https://cbr.ru/scripts/XML_dynamic.asp?date_req1=12/11/2021&date_req2=12/11/2021&VAL_NM_RQ=R01235");
 // Задаём адрес исходной веб-страницы Центробанка в текстовом формате.
         String originalPageText = "https://cbr.ru/scripts/XML_dynamic.asp?date_req1=12/11/2021&date_req2=12/11/2021&VAL_NM_RQ=R01235";
