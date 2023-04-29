@@ -17,6 +17,11 @@ import java.util.*;
 // Инфо здесь: Как найти анализ курса валют за определенную дату. Урок 6 Видео мин 0.44.56
 // Задание здесь: https://lms.synergy.ru/student/updiscipline/4474947/1045153/1/1
 
+// Здесь курсы рубля за все даты месяца: https://cbr.ru/scripts/XML_dynamic.asp?date_req1=28/02/2023&date_req2=31/03/2023&VAL_NM_RQ=R01235
+// МНЕ ОТВЕТ на stackoverflow: https://ru.stackoverflow.com/questions/1515527/%d0%9d%d0%b0%d0%b9%d1%82%d0%b8-%d1%80%d0%b5%d1%88%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b2-%d1%86%d0%b8%d0%ba%d0%bb%d0%b5-%d1%81-%d0%b4%d0%b0%d1%82%d0%b0%d0%bc%d0%b8
+// Парсинг ( десериализация ) HTML: https://www.youtube.com/watch?v=R0u8HDEV1vM
+// Парсинг ( десериализация ) HTML тоже: https://youtu.be/wSucpFh7ouk
+// Здесь про Map: https://javarush.com/groups/posts/2542-otvetih-na-samihe-populjarnihe-voprosih-ob-interfeyse-map
 public class Draft_30_2_Map_With_Case_3_1_1 {
 
     public static void main(String[] args) throws IOException, ParseException {
@@ -48,9 +53,10 @@ public class Draft_30_2_Map_With_Case_3_1_1 {
         int lastDay = ym.lengthOfMonth();
 //    Создаем массив ArrayList, куда записываем в качестве элементов курс на текущую дату.
         List<Double> listCourses = new ArrayList<>();
-        Map<String, Double> mapDateRate = new HashMap<>(); // todo удалить
 
-// КАК НАЙТИ ДАТУ НА ДЕНЬ РАНЬШЕ.
+// Задаём Map.
+        Map<String, Double> mapDateRate = new HashMap<>(); // todo удалить
+// КАК НАЙТИ ДАТУ НА ДЕНЬ РАНЬШЕ. / todo удалить
 //        int dayFirst = 1; // todo удалить
 //        LocalDate dayFirstLD = ym.atDay(dayFirst); // todo удалить
 //        LocalDate dayMinusOne = dayFirstLD - 1; // todo удалить
@@ -102,6 +108,10 @@ public class Draft_30_2_Map_With_Case_3_1_1 {
                 System.out.println("Курс на " + nextDate);
             }
         }
+
+        System.out.println(mapDateRate); // todo удалить
+
+
 //Далее ищем максимальные перепады курса.
         double max = maxDifference(listCourses);
         double min = minDifference(listCourses);
