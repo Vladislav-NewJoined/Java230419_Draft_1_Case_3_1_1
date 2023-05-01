@@ -6,7 +6,7 @@ import java.util.Map;
 // Парсинг ( десериализация ) HTML: https://www.youtube.com/watch?v=R0u8HDEV1vM
 // Парсинг ( десериализация ) HTML тоже: https://youtu.be/wSucpFh7ouk
 // Здесь про Map: https://javarush.com/groups/posts/2542-otvetih-na-samihe-populjarnihe-voprosih-ob-interfeyse-map
-public class Draft_30_1_Map {
+public class Draft_30_1_Map_Как_список_Ключ_Значение {
 
     public static void main(String[] args) {
 
