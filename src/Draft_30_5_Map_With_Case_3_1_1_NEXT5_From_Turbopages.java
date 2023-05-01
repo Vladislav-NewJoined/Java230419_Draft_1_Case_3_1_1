@@ -54,9 +54,9 @@ class Draft_30_5_Map_With_Case_3_1_1_NEXT5_From_Turbopages {
         // print the map
         print(sortedMap);
 
-        // Calling method 1 to
-        // find the entry with highest value and
-        // print on the console
+////         Calling method 1 to
+////         find the entry with highest value and
+////         print on the console
 //        System.out.println(
 //                "Entry with highest value: "
 //                        + getMaxEntryInMapBasedOnValue(sortedMap));
