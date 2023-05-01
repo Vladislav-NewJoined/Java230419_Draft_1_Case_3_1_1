@@ -98,7 +98,7 @@ class Draft_30_4_Map_With_Case_3_1_1_NEXT4_From_Turbopages {
     // To print the map
     public static void print(Map<String, Double> sortedMap) {
 
-        System.out.print("Map: ");
+        System.out.print("Map sortedMap: ");
 
         // If map does not contain any value
         if (sortedMap.isEmpty()) {
