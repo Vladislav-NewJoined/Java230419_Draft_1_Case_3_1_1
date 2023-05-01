@@ -22,7 +22,7 @@ import java.util.*;
 // Парсинг ( десериализация ) HTML: https://www.youtube.com/watch?v=R0u8HDEV1vM
 // Парсинг ( десериализация ) HTML тоже: https://youtu.be/wSucpFh7ouk
 // Здесь про Map: https://javarush.com/groups/posts/2542-otvetih-na-samihe-populjarnihe-voprosih-ob-interfeyse-map
-public class Draft_30_4_Map_With_Case_3_1_1_NEXT_NEXT {
+public class Draft_30_4_Map_With_Case_3_1_1_NEXT2 {
 
     public static void main(String[] args) throws IOException, ParseException {
         BufferedReader buffered = new BufferedReader(new InputStreamReader(System.in));
@@ -120,12 +120,13 @@ public class Draft_30_4_Map_With_Case_3_1_1_NEXT_NEXT {
         double minDif = minDifference(ratesList);
         DecimalFormat df = new DecimalFormat("0.000");
         df.setRoundingMode(RoundingMode.DOWN);
-
+        String датаПриростаКурса = "?";
+        String датаПаденияКурса = "?";
 
 
 
 // Проводим вычисления в Map
-// Распечатываем изначальный список Map (не отсортированный)
+// Распечатываем изначальный список Map mapRatesInDates (не отсортированный)
 //        System.out.println(mapRatesInDates); // todo удалить
 // Создаём и распечатываем отсортированный список Map. Про сортировку здесь: https://rukovodstvo.net/posts/id_598/
         Map<String, Double> sortedMap = new TreeMap<>(mapRatesInDates); // - ИЗ ЭТОГО ОТСОРТ-ГО Мапа МАКСИМАЛЬНЫЕ ПЕРЕПАДЫ КУРСА БРАТЬ.
