@@ -22,7 +22,7 @@ import java.util.*;
 // Парсинг ( десериализация ) HTML: https://www.youtube.com/watch?v=R0u8HDEV1vM
 // Парсинг ( десериализация ) HTML тоже: https://youtu.be/wSucpFh7ouk
 // Здесь про Map: https://javarush.com/groups/posts/2542-otvetih-na-samihe-populjarnihe-voprosih-ob-interfeyse-map
-public class Draft_30_3_Map_With_Case_3_1_1_Next {
+public class Draft_30_4_Map_With_Case_3_1_1_NEXT_NEXT {
 
     public static void main(String[] args) throws IOException, ParseException {
         BufferedReader buffered = new BufferedReader(new InputStreamReader(System.in));
@@ -56,6 +56,11 @@ public class Draft_30_3_Map_With_Case_3_1_1_Next {
 
 // Задаём Map.
         Map<String, Double> mapRatesInDates = new HashMap<>(); // todo удалить
+
+
+
+
+
 // КАК НАЙТИ ДАТУ НА ДЕНЬ РАНЬШЕ. / todo удалить
 //        int dayFirst = 1; // todo удалить
 //        LocalDate dayFirstLD = ym.atDay(dayFirst); // todo удалить
@@ -77,7 +82,7 @@ public class Draft_30_3_Map_With_Case_3_1_1_Next {
         for (int day = 1; day <= lastDay; day++) {
             // create the day
             LocalDate dt = ym.atDay(day);
-        //            System.out.println(dt); // todo удалить
+            //            System.out.println(dt); // todo удалить
 
 
             DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -90,7 +95,7 @@ public class Draft_30_3_Map_With_Case_3_1_1_Next {
             c.setTime(sdf.parse(dtStr));
             String currentDate;
             currentDate = sdf.format(c.getTime());  // entering current Date
-        // Меняем в адресе исходной страницы дату на текующую.
+            // Меняем в адресе исходной страницы дату на текующую.
             String urlWithCurrentDate = originalPageText.replaceAll("12/11/2021", currentDate);
 
             String currentPage = downloadWebPage(urlWithCurrentDate);
@@ -100,7 +105,7 @@ public class Draft_30_3_Map_With_Case_3_1_1_Next {
                 // Задаём курс в виде переменной Double.
                 double doubleCurrentRate = Double.parseDouble(currentRatePage.replace(",", "."));
                 System.out.println("Курс на " + currentDate + "    " + doubleCurrentRate);
-        // Здесь: Как найти из мапы перепады курса: https://ru.stackoverflow.com/questions/1515527/%d0%9d%d0%b0%d0%b9%d1%82%d0%b8-%d1%80%d0%b5%d1%88%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b2-%d1%86%d0%b8%d0%ba%d0%bb%d0%b5-%d1%81-%d0%b4%d0%b0%d1%82%d0%b0%d0%bc%d0%b8
+                // Здесь: Как найти из мапы перепады курса: https://ru.stackoverflow.com/questions/1515527/%d0%9d%d0%b0%d0%b9%d1%82%d0%b8-%d1%80%d0%b5%d1%88%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b2-%d1%86%d0%b8%d0%ba%d0%bb%d0%b5-%d1%81-%d0%b4%d0%b0%d1%82%d0%b0%d0%bc%d0%b8
                 mapRatesInDates.put(currentDate, doubleCurrentRate); // todo удалить
                 ratesList.add(doubleCurrentRate);
             } else {
@@ -109,16 +114,29 @@ public class Draft_30_3_Map_With_Case_3_1_1_Next {
             }
         }
 
-        System.out.println(mapRatesInDates); // todo удалить
-
 
         //Далее ищем максимальные перепады курса.
-        double max = maxDifference(ratesList);
-        double min = minDifference(ratesList);
+        double maxDif = maxDifference(ratesList);
+        double minDif = minDifference(ratesList);
         DecimalFormat df = new DecimalFormat("0.000");
         df.setRoundingMode(RoundingMode.DOWN);
-        System.out.println("\nЗа указанный месяц максимальный прирост курса между двумя соседними датами: " + df.format(max) + ", соответствует дате: ");
-        System.out.println("За указанный месяц максимальное снижение курса между двумя соседними датами: : " + df.format(min) + ", это пришлось на дату: ");
+
+
+
+
+// Проводим вычисления в Map
+// Распечатываем изначальный список Map (не отсортированный)
+//        System.out.println(mapRatesInDates); // todo удалить
+// Создаём и распечатываем отсортированный список Map. Про сортировку здесь: https://rukovodstvo.net/posts/id_598/
+        Map<String, Double> sortedMap = new TreeMap<>(mapRatesInDates); // - ИЗ ЭТОГО ОТСОРТ-ГО Мапа МАКСИМАЛЬНЫЕ ПЕРЕПАДЫ КУРСА БРАТЬ.
+        System.out.println("\n" + sortedMap);
+        System.out.println();
+        sortedMap.entrySet().forEach(System.out::println);
+
+        System.out.println("\nЗа указанный месяц максимальный прирост курса между двумя соседними датами: " +
+                df.format(maxDif) + ", это пришлось на дату: " + "датаПриростаКурса");
+        System.out.println("За указанный месяц максимальное снижение курса между двумя соседними датами: : " +
+                df.format(minDif) + ", это пришлось на дату: " + "датаПаденияКурса");
 
         //НАХОДИМ ДАТЫ МАКСИМАЛЬНОГО РОСТА И ПАДЕНИЯ КУРСА И СКАЧИВАЕМ СТРАНИЦЫ ИЗ WIKINEWS.
         //СОХРАНЯЕМ СТРАНИЦУ ИЗ ВИКИПЕДИИ MAX
@@ -129,10 +147,10 @@ public class Draft_30_3_Map_With_Case_3_1_1_Next {
         String yea2 = items2[2];
         String dtStr2 = (yea2 + "-" + mon2 + "-" + dat2);
 
-        LocalDate localDate2 = LocalDate.parse(dtStr2);
+        LocalDate localDateGotUp = LocalDate.parse(dtStr2);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
-        String formattedDate1 = formatter.format(localDate2);
+        String formattedDate1 = formatter.format(localDateGotUp);
 
         String[] items3 = formattedDate1.split(" ");
         String dat3 = items3[0];
@@ -155,12 +173,12 @@ public class Draft_30_3_Map_With_Case_3_1_1_Next {
         String yea4 = items4[2];
         String dtStr4 = (yea4 + "-" + mon4 + "-" + dat4);
 
-        LocalDate localDate4 = LocalDate.parse(dtStr4);
+        LocalDate localDateGotDown = LocalDate.parse(dtStr4);
 
         DateTimeFormatter formatter2 = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
-        String formattedDate2 = formatter2.format(localDate4);
+        String formattedDateRaised = formatter2.format(localDateGotDown);
 
-        String[] items5 = formattedDate2.split(" ");
+        String[] items5 = formattedDateRaised.split(" ");
         String dat5 = items5[0];
         String mon5 = items5[1];
         String yea5 = items5[2];
@@ -194,8 +212,8 @@ public class Draft_30_3_Map_With_Case_3_1_1_Next {
         System.out.println("\nСтраницы из Википедии сохранены");
     }
 
-        //Пишем классы для поиска максимальных перепадов курса.
-        //Сначала максимальную разницу находим.
+    //Пишем классы для поиска максимальных перепадов курса.
+    //Сначала максимальную разницу находим.
     public static double maxDifference(List<Double> ratesList) {
         if (ratesList == null || ratesList.size() == 0) {
             return Double.MIN_VALUE;
@@ -205,24 +223,24 @@ public class Draft_30_3_Map_With_Case_3_1_1_Next {
         for (int i = 0; i < len - 1; i++) {
             diff[i] = ratesList.get(i + 1) - ratesList.get(i);
         }
-        return max(diff);
+        return maxDif(diff);
     }
 
-    public static double max(double[] diff) {
+    public static double maxDif(double[] diff) {
         if (diff == null || diff.length == 0) {
             return Double.MIN_VALUE;
         }
-        double max = diff[0];
+        double maxDif = diff[0];
         for (int i = 0, len = diff.length; i < len; i++) {
             //int tmp=diff[i]>0?diff[i]:(-diff[i]);
-            if (max < diff[i]) {
-                max = diff[i];
+            if (maxDif < diff[i]) {
+                maxDif = diff[i];
             }
         }
-        return max;
+        return maxDif;
     }
 
-        //Теперь минимальную разницу находим.
+    //Теперь минимальную разницу находим.
     public static double minDifference(List<Double> ratesList) {
         if (ratesList == null || ratesList.size() == 0) {
             return Double.MIN_VALUE;
@@ -232,21 +250,21 @@ public class Draft_30_3_Map_With_Case_3_1_1_Next {
         for (int i = 0; i < len - 1; i++) {
             diff[i] = ratesList.get(i + 1) - ratesList.get(i);
         }
-        return min(diff);
+        return minDif(diff);
     }
 
-    public static double min(double[] diff) {
+    public static double minDif(double[] diff) {
         if (diff == null || diff.length == 0) {
             return Double.MIN_VALUE;
         }
-        double min = diff[0];
+        double minDif = diff[0];
         for (int i = 0, len = diff.length; i < len; i++) {
             //int tmp=diff[i]>0?diff[i]:(-diff[i]);
-            if (min > diff[i]) {
-                min = diff[i];
+            if (minDif > diff[i]) {
+                minDif = diff[i];
             }
         }
-        return min;
+        return minDif;
     }
 
     private static String downloadWebPage(String url) throws IOException {
