@@ -4,14 +4,14 @@
 
 // Importing all utility classes
 
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+//Import java.util.Map.Entry;
 
 import static java.util.Map.entry;
 
 // Main class
-class Draft_30_5_Map_With_Case_3_1_1_NEXT5_From_Turbopages {
+class Draft_30_5_Map_With_Case_3_1_1_NEXT5_From_overcoder_net {
     // Method 3
     // Main driver method
     public static void main(String[] args) {
@@ -57,58 +57,29 @@ class Draft_30_5_Map_With_Case_3_1_1_NEXT5_From_Turbopages {
 ////         Calling method 1 to
 ////         find the entry with highest value and
 ////         print on the console
-//        System.out.println(
+//        System.out.println(   // Работает в Draft_30_4_Map_With_Case_3_1_1_NEXT4_From_Turbopages
 //                "Entry with highest value: "
 //                        + getMaxEntryInMapBasedOnValue(sortedMap));
-    }
 
-    public static double maxDifference(Map<String, Double> sortedMap) {
-        int i = 0;
-        for (Map.Entry<String, Double> entry : sortedMap.entrySet()) {
-            System.out.println(i + " " + entry.getKey() + " " + entry.getValue());
-
-            ++i; //iterate
+//        Map<String, String> map = ...
+        for (Map.Entry<String, Double> entry : sortedMap.entrySet())
+        {
+            System.out.println(entry.getKey() + "/" + entry.getValue());
         }
-        return 0;
+
+
+
     }
 
 
-
-
-
-
-
-//    // Method 1
-//    // Find the entry with highest value
-//    public static <String, Double extends Comparable<Double>>
-//    Map.Entry<String, Double>
-//    getMaxEntryInMapBasedOnValue(Map<String, Double> sortedMap) {
+//    public static double maxDifference(Map<String, Double> sortedMap) {
+//        int i = 0;
+//        for (Map.Entry<String, Double> entry : sortedMap.entrySet()) {
+//            System.out.println(i + " " + entry.getKey() + " " + entry.getValue());
 //
-//        // To store the result
-//        Map.Entry<String, Double> entryWithMaxValue = null;
-////        Map<String, Double> mapRatesInDates = new HashMap<>();
-//
-//        // Iterate in the map to find the required entry
-//        for (Map.Entry<String, Double> currentEntry :
-//                sortedMap.entrySet()) {
-//
-//            if (
-//                // If this is the first entry, set result as
-//                // this
-//                    entryWithMaxValue == null
-//
-//                            // If this entry's value is more than the
-//                            // max value Set this entry as the max
-//                            || currentEntry.getValue().compareTo(
-//                            entryWithMaxValue.getValue())
-//                            > 0) {
-//
-//                entryWithMaxValue = currentEntry;
-//            }
+//            ++i; //iterate
 //        }
-//
-//        // Return the entry with highest value
-//        return entryWithMaxValue;
+//        return 0;
 //    }
 
     // Method 2
