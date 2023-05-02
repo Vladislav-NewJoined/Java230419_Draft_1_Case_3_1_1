@@ -22,7 +22,7 @@ import java.util.*;
 // Парсинг ( десериализация ) HTML: https://www.youtube.com/watch?v=R0u8HDEV1vM
 // Парсинг ( десериализация ) HTML тоже: https://youtu.be/wSucpFh7ouk
 // Здесь про Map: https://javarush.com/groups/posts/2542-otvetih-na-samihe-populjarnihe-voprosih-ob-interfeyse-map
-public class Draft_1_2_Case_3_1_1_WithDifference {
+public class Draft_1_4_Case_3_1_1_WithDifference_With_Dates_Correspondence {
 
     public static void main(String[] args) throws IOException, ParseException {
         BufferedReader buffered = new BufferedReader(new InputStreamReader(System.in));
@@ -114,20 +114,84 @@ public class Draft_1_2_Case_3_1_1_WithDifference {
 //        System.out.println(mapRatesInDates); // todo удалить
 // Сортируем и распечатываем отсортированный список Map. Про сортировку здесь: https://rukovodstvo.net/posts/id_598/
         Map<String, Double> sortedMap = new TreeMap<>(mapRatesInDates); // - ИЗ ЭТОГО Мапа МАКСИМАЛЬНЫЕ ПЕРЕПАДЫ КУРСА БРАТЬ.
-        System.out.println(sortedMap);
-        sortedMap.entrySet().forEach(System.out::println);
+//        System.out.println(sortedMap);
+//        sortedMap.entrySet().forEach(System.out::println);
 
-        //Далее ищем максимальные перепады курса.
-        double max = maxDifference(ratesList);
-        double min = minDifference(ratesList);
+//Это старый поиск перепадов курса. Его удалить.
+//        //Далее ищем максимальные перепады курса.
+//        double max = maxDifference(ratesList);
+//        double min = minDifference(ratesList);
+//        DecimalFormat df = new DecimalFormat("0.000");
+//        df.setRoundingMode(RoundingMode.DOWN);
+//        System.out.println("\nЗа указанный месяц максимальный прирост курса между двумя соседними датами: " + df.format(max) + ", это пришлось на дату: ");
+//        System.out.println("За указанный месяц максимальное снижение курса между двумя соседними датами: " + df.format(min) + ", это пришлось на дату: ");
+
+
+
+
+
+
+
+
+
+
+
+
+// Вот отсюда начинается соответствие дат
+        // Calling method 2 to
+        // print the map
+//        print(sortedMap);
+
+//        6 Пример с ru.stakoverflow.com (УДАЛСЯ!!!!!!!!!!!!!!!!!!)
+//        с попыткой найти разницу соседних элементов
+//        ```
+        System.out.println(); // Пустую строку добавляем
+        List<String> keys = new ArrayList<String>(sortedMap.keySet());
+        Double maxDiffer = sortedMap.get(keys.get(1)) - sortedMap.get(keys.get(0));
+        String dateOfMaxDiffer = keys.get(0);
+        Double minDiffer = sortedMap.get(keys.get(1)) - sortedMap.get(keys.get(0));
+        String dateOfMinDiffer = keys.get(0);
+//        for (int i = 0; i < keys.size(); i++) {
+//            String key = keys.get(i);
+//            Double value = sortedMap.get(key);
+//            System.out.println(key + " / " + value);
+//        }
+        System.out.println(); // Распечатали список, далее пустую строку добавляем
+
+//        Дальше в следующем цикле ищем разницу между соседними элементами
+//        Сначала ищем максимальный прирост
+        for (int i = 1; i < keys.size(); i++) {
+            String key = keys.get(i);
+            Double value = sortedMap.get(key);
+            String keyMinusOne = keys.get(i - 1);
+            Double valueMinusOne = sortedMap.get(keyMinusOne);
+
+            Double Differ = (value - valueMinusOne); // = MIN_VALUE;
+            DecimalFormat df2 = new DecimalFormat("0.000");
+            df2.setRoundingMode(RoundingMode.DOWN);
+            System.out.println(df2.format(Differ));
+            if ((sortedMap.get(keys.get(i)) - sortedMap.get(keys.get(i - 1)) > maxDiffer)) {
+                maxDiffer = (value - valueMinusOne);
+                dateOfMaxDiffer = key;
+            }
+            if ((sortedMap.get(keys.get(i)) - sortedMap.get(keys.get(i - 1)) < minDiffer)) {
+                minDiffer = (value - valueMinusOne);
+                dateOfMinDiffer = key;
+            }
+        }
+
+        // The printed result
         DecimalFormat df = new DecimalFormat("0.000");
         df.setRoundingMode(RoundingMode.DOWN);
-        System.out.println("\nЗа указанный месяц максимальный прирост курса между двумя соседними датами: " + df.format(max) + ", это пришлось на дату: ");
-        System.out.println("За указанный месяц максимальное снижение курса между двумя соседними датами: " + df.format(min) + ", это пришлось на дату: ");
+        System.out.println("\n" + "За указанный месяц максимальный прирост курса между двумя соседними датами: " + df.format(maxDiffer) + ", это пришлось на дату: " + dateOfMaxDiffer);
+        System.out.println("За указанный месяц максимальное снижение курса между двумя соседними датами: " + df.format(minDiffer) + ", это пришлось на дату: " + dateOfMinDiffer);
+//        ```
+//Вот здесь заканчивается соответствие дат
 
-        //НАХОДИМ ДАТЫ МАКСИМАЛЬНОГО РОСТА И ПАДЕНИЯ КУРСА И СКАЧИВАЕМ СТРАНИЦЫ ИЗ WIKINEWS.
+
+        //СКАЧИВАЕМ СТРАНИЦЫ ИЗ WIKINEWS.
         //СОХРАНЯЕМ СТРАНИЦУ ИЗ ВИКИПЕДИИ MAX
-        String dtStrMax = "18/03/2023"; //Объявляем дату, когда курс максимально вырос
+        String dtStrMax = dateOfMaxDiffer; //Объявляем дату, когда курс максимально вырос
         String[] items2 = dtStrMax.split("/");
         String dat2 = items2[0];
         String mon2 = items2[1];
@@ -153,7 +217,7 @@ public class Draft_1_2_Case_3_1_1_WithDifference {
         String pageWikiOriginChanged1 = downloadWebPage(pageWikiOriginChangedTextMax);
 
         //СОХРАНЯЕМ СТРАНИЦЫ ИЗ ВИКИПЕДИИ MIN
-        String dtStrMin = "03/03/2023"; //Объявляем дату, когда курс максимально упал
+        String dtStrMin = dateOfMinDiffer; //Объявляем дату, когда курс максимально упал
         String[] items4 = dtStrMin.split("/");
         String dat4 = items4[0];
         String mon4 = items4[1];
@@ -186,73 +250,78 @@ public class Draft_1_2_Case_3_1_1_WithDifference {
         System.out.println(dtStrForChangeMin + " " + "- в этот день курс упал.");
 
         // создаём новый буферизированный объект
-        BufferedWriter writer1 = new BufferedWriter(new FileWriter("pageGrowthRate.html"));
+        BufferedWriter writer1 = new BufferedWriter(new FileWriter("1pageGrowthRate.html"));
         // добавляем название переменной со страницей, которую сохраняем
         writer1.write(pageWikiOriginChanged1);
         // закрываем writer
         writer1.close();
 
-        BufferedWriter writer2 = new BufferedWriter(new FileWriter("pageDeclineRate.html"));
+        BufferedWriter writer2 = new BufferedWriter(new FileWriter("2pageDeclineRate.html"));
         writer2.write(pageWikiOriginChanged2);
         writer2.close();
 
         System.out.println("\nСтраницы из Википедии сохранены");
+
+
+
+
+
     }
 
-    //Пишем классы для поиска максимальных перепадов курса.
-    //Сначала максимальную разницу находим.
-    public static double maxDifference(List<Double> ratesList) {
-        if (ratesList == null || ratesList.size() == 0) {
-            return Double.MIN_VALUE;
-        }
-        int len = ratesList.size();
-        double[] diff = new double[len - 1];
-        for (int i = 0; i < len - 1; i++) {
-            diff[i] = ratesList.get(i + 1) - ratesList.get(i);
-        }
-        return max(diff);
-    }
-
-    public static double max(double[] diff) {
-        if (diff == null || diff.length == 0) {
-            return Double.MIN_VALUE;
-        }
-        double max = diff[0];
-        for (int i = 0, len = diff.length; i < len; i++) {
-            //int tmp=diff[i]>0?diff[i]:(-diff[i]);
-            if (max < diff[i]) {
-                max = diff[i];
-            }
-        }
-        return max;
-    }
-
-    //Теперь минимальную разницу находим.
-    public static double minDifference(List<Double> ratesList) {
-        if (ratesList == null || ratesList.size() == 0) {
-            return Double.MIN_VALUE;
-        }
-        int len = ratesList.size();
-        double[] diff = new double[len - 1];
-        for (int i = 0; i < len - 1; i++) {
-            diff[i] = ratesList.get(i + 1) - ratesList.get(i);
-        }
-        return min(diff);
-    }
-
-    public static double min(double[] diff) {
-        if (diff == null || diff.length == 0) {
-            return Double.MIN_VALUE;
-        }
-        double min = diff[0];
-        for (int i = 0, len = diff.length; i < len; i++) {
-            //int tmp=diff[i]>0?diff[i]:(-diff[i]);
-            if (min > diff[i]) {
-                min = diff[i];
-            }
-        }
-        return min;
-    }
+//    //Пишем классы для поиска максимальных перепадов курса.
+//    //Сначала максимальную разницу находим.
+//    public static double maxDifference(List<Double> ratesList) {
+//        if (ratesList == null || ratesList.size() == 0) {
+//            return Double.MIN_VALUE;
+//        }
+//        int len = ratesList.size();
+//        double[] diff = new double[len - 1];
+//        for (int i = 0; i < len - 1; i++) {
+//            diff[i] = ratesList.get(i + 1) - ratesList.get(i);
+//        }
+//        return max(diff);
+//    }
+//
+//    public static double max(double[] diff) {
+//        if (diff == null || diff.length == 0) {
+//            return Double.MIN_VALUE;
+//        }
+//        double max = diff[0];
+//        for (int i = 0, len = diff.length; i < len; i++) {
+//            //int tmp=diff[i]>0?diff[i]:(-diff[i]);
+//            if (max < diff[i]) {
+//                max = diff[i];
+//            }
+//        }
+//        return max;
+//    }
+//
+//    //Теперь минимальную разницу находим.
+//    public static double minDifference(List<Double> ratesList) {
+//        if (ratesList == null || ratesList.size() == 0) {
+//            return Double.MIN_VALUE;
+//        }
+//        int len = ratesList.size();
+//        double[] diff = new double[len - 1];
+//        for (int i = 0; i < len - 1; i++) {
+//            diff[i] = ratesList.get(i + 1) - ratesList.get(i);
+//        }
+//        return min(diff);
+//    }
+//
+//    public static double min(double[] diff) {
+//        if (diff == null || diff.length == 0) {
+//            return Double.MIN_VALUE;
+//        }
+//        double min = diff[0];
+//        for (int i = 0, len = diff.length; i < len; i++) {
+//            //int tmp=diff[i]>0?diff[i]:(-diff[i]);
+//            if (min > diff[i]) {
+//                min = diff[i];
+//            }
+//        }
+//        return min;
+//    }
 
     private static String downloadWebPage(String url) throws IOException {
         StringBuilder result = new StringBuilder();
@@ -266,4 +335,21 @@ public class Draft_1_2_Case_3_1_1_WithDifference {
         }
         return result.toString();
     }
+    // Method 2
+    // To print the map
+//    public static void print(Map<String, Double> sortedMap) {
+
+//        System.out.print("Map sortedMap: ");
+
+
+        // If map does not contain any value
+//        if (sortedMap.isEmpty()) {
+
+//            System.out.println("[]");
+//        } else {
+//            System.out.println(sortedMap);
+//        }
+//    }
+
+
 }

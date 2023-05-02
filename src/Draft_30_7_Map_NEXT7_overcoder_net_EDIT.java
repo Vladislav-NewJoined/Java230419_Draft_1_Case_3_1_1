@@ -68,8 +68,7 @@ class Draft_30_7_Map_NEXT7_overcoder_net_EDIT {
 //        1 Пример из overcoder.net с улучшенным циклом for
 //        https://overcoder.net/q/1822/%D0%BA%D0%B0%D0%BA-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%BE-%D0%BF%D0%B5%D1%80%D0%B5%D0%B1%D1%80%D0%B0%D1%82%D1%8C-%D0%BA%D0%B0%D0%B6%D0%B4%D1%83%D1%8E-%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D1%8C-%D0%B2-java-map
 //        ```
-        for (Map.Entry<String, Double> entry : sortedMap.entrySet())
-        {
+        for (Map.Entry<String, Double> entry : sortedMap.entrySet()) {
 //                         System.out.println(entry.getKey() + "/" + entry.getValue());
         }
 //        ```
@@ -127,14 +126,16 @@ class Draft_30_7_Map_NEXT7_overcoder_net_EDIT {
 //        }
 ////        ```
 
-//        6 Пример с ru.stakoverflow.com
+//        6 Пример с ru.stakoverflow.com (УДАЛСЯ!!!!!!!!!!!!!!!!!!)
 //        с попыткой найти разницу соседних элементов
 //        ```
         System.out.println(); // Пустую строку добавляем
         List<String> keys = new ArrayList<String>(sortedMap.keySet());
         Double maxDiffer = sortedMap.get(keys.get(1)) - sortedMap.get(keys.get(0));
         String dataOfMaxDiffer = keys.get(0);
-        for(int i = 0; i < keys.size(); i++) {
+        Double minDiffer = sortedMap.get(keys.get(1)) - sortedMap.get(keys.get(0));
+        String dataOfMinDiffer = keys.get(0);
+        for (int i = 0; i < keys.size(); i++) {
             String key = keys.get(i);
             Double value = sortedMap.get(key);
             System.out.println(key + " / " + value);
@@ -143,92 +144,34 @@ class Draft_30_7_Map_NEXT7_overcoder_net_EDIT {
 
 //        Дальше в следующем цикле ищем разницу между соседними элементами
 //        Сначала ищем максимальный прирост
-        for(int i = 1; i < keys.size(); i++) {
+        for (int i = 1; i < keys.size(); i++) {
             String key = keys.get(i);
             Double value = sortedMap.get(key);
-            String keyMinusOne = keys.get(i-1);
+            String keyMinusOne = keys.get(i - 1);
             Double valueMinusOne = sortedMap.get(keyMinusOne);
 
             Double Differ = (value - valueMinusOne); // = MIN_VALUE;
             DecimalFormat df2 = new DecimalFormat("0.000");
             df2.setRoundingMode(RoundingMode.DOWN);
             System.out.println(df2.format(Differ));
-            if ((sortedMap.get(keys.get(i)) - sortedMap.get(keys.get(i-1)) > maxDiffer)) {
+            if ((sortedMap.get(keys.get(i)) - sortedMap.get(keys.get(i - 1)) > maxDiffer)) {
                 maxDiffer = (value - valueMinusOne);
                 dataOfMaxDiffer = key;
+            }
+            if ((sortedMap.get(keys.get(i)) - sortedMap.get(keys.get(i - 1)) < minDiffer)) {
+                minDiffer = (value - valueMinusOne);
+                dataOfMinDiffer = key;
             }
         }
 
         // The printed result
         DecimalFormat df = new DecimalFormat("0.000");
         df.setRoundingMode(RoundingMode.DOWN);
-        System.out.println("\n" + "Maximum is : " + df.format(maxDiffer) + " corresponds with data " + dataOfMaxDiffer);
-        System.out.println("Minimum is : " + "ищем...");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        System.out.println("\n" + "За указанный месяц максимальный прирост курса между двумя соседними датами: " + df.format(maxDiffer) + ", это пришлось на дату: " + dataOfMaxDiffer);
+        System.out.println("За указанный месяц максимальное снижение курса между двумя соседними датами: " + df.format(minDiffer) + ", это пришлось на дату: " + dataOfMinDiffer);
 //        ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
-//    public static double maxDifference(Map<String, Double> sortedMap) {
-//        int i = 0;
-//        for (Map.Entry<String, Double> entry : sortedMap.entrySet()) {
-//            System.out.println(i + " " + entry.getKey() + " " + entry.getValue());
-//
-//            ++i; //iterate
-//        }
-//        return 0;
-//    }
+    }
 
     // Method 2
     // To print the map
