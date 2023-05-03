@@ -24,6 +24,6 @@ public class Draft_33_ArrayList_С_Предыдущим_Днем {
 
         // Как получить все даты в указанном диапазоне  https://devmark.ru/article/all-dates-between-two-dates#header1
         // Как получить предыдущую дату  https://translated.turbopages.org/proxy_u/en-ru.ru.7652851d-64515d5d-5e1b26ad-74722d776562/https/stackoverflow.com/questions/2458049/how-to-get-previous-date-in-java
-
+// Далее писать так: Во второй цикл добавляем: если day = 1, то get previous day и добавить его во второй ArrayList, отсортировать его и по нему искать разницу.
     }
 }
