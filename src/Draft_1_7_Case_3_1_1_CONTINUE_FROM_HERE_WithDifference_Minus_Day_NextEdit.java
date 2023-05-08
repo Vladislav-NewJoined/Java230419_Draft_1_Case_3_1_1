@@ -303,6 +303,8 @@ public class Draft_1_7_Case_3_1_1_CONTINUE_FROM_HERE_WithDifference_Minus_Day_Ne
 //        ```
         System.out.println(); // Добавляем пустую строку, как разделитель
         List<String> keys = new ArrayList<String>(sortedMap2.keySet());
+        System.out.println("ПЕЧАТЬ ТРЕТЬЯ");
+/*ПЕЧАТЬ ТРЕТЬЯ  */      System.out.println(keys); // TODO Только для проверки вывел на печать ПЕЧАТЬ ТРЕТЬЯ
         Double maxDiffer = sortedMap2.get(keys.get(1)) - sortedMap2.get(keys.get(0));
         String dateOfMaxDiffer = keys.get(0); // TODO Здесь сделать формат вида 28/02/2023
         Double minDiffer = sortedMap2.get(keys.get(1)) - sortedMap2.get(keys.get(0));
