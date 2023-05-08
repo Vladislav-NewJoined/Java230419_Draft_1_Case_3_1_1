@@ -22,7 +22,7 @@ import java.util.*;
 // Парсинг ( десериализация ) HTML: https://www.youtube.com/watch?v=R0u8HDEV1vM
 // Парсинг ( десериализация ) HTML тоже: https://youtu.be/wSucpFh7ouk
 // Здесь про Map: https://javarush.com/groups/posts/2542-otvetih-na-samihe-populjarnihe-voprosih-ob-interfeyse-map
-public class Draft_1_6_Case_3_1_1_WithDifference_Minus_Day_NextEdit {
+public class Draft_1_7_Case_3_1_1_CONTINUE_FROM_HERE_WithDifference_Minus_Day_NextEdit {
 
 
 // Как получить все даты в указанном диапазоне  https://devmark.ru/article/all-dates-between-two-dates#header1
@@ -97,6 +97,14 @@ public class Draft_1_6_Case_3_1_1_WithDifference_Minus_Day_NextEdit {
             c.setTime(sdf.parse(dtStr));
             String currentDate;
             currentDate = sdf.format(c.getTime());  // entering current Date
+
+            // Приводим currentDate к формату LocalDate
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate = LocalDate.parse(currentDate, formatter);
+            /*System.out.println(localDate);
+            System.out.println(formatter.format(localDate));*/
+
+
             // Меняем в адресе исходной страницы дату на текующую.
             String urlWithCurrentDate = originalPageText.replaceAll("12/11/2021", currentDate);
 
@@ -108,7 +116,7 @@ public class Draft_1_6_Case_3_1_1_WithDifference_Minus_Day_NextEdit {
                 double doubleCurrentRate = Double.parseDouble(currentRatePage.replace(",", "."));
                 System.out.println(/*dt + "*/"Курс на " + currentDate + "    " + doubleCurrentRate);
                 // Здесь: Как найти из мапы перепады курса: https://ru.stackoverflow.com/questions/1515527/%d0%9d%d0%b0%d0%b9%d1%82%d0%b8-%d1%80%d0%b5%d1%88%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b2-%d1%86%d0%b8%d0%ba%d0%bb%d0%b5-%d1%81-%d0%b4%d0%b0%d1%82%d0%b0%d0%bc%d0%b8
-                mapRatesInDates.put(currentDate, doubleCurrentRate); // todo удалить
+                mapRatesInDates.put(String.valueOf(localDate), doubleCurrentRate); // todo удалить
                 ratesList.add(doubleCurrentRate);
                 /*ratesListPlusPreviousDay.add(doubleCurrentRate);*/
             } else {
@@ -144,6 +152,14 @@ public class Draft_1_6_Case_3_1_1_WithDifference_Minus_Day_NextEdit {
             c.setTime(sdf.parse(dtStr));
             String currentDate;
             currentDate = sdf.format(c.getTime());  // entering current Date
+
+            // Приводим currentDate к формату LocalDate
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate = LocalDate.parse(currentDate, formatter);
+            /*System.out.println(localDate);
+            System.out.println(formatter.format(localDate));*/
+
+
             // Меняем в адресе исходной страницы дату на текующую.
             String urlWithCurrentDate = originalPageText.replaceAll("12/11/2021", currentDate);
 
@@ -155,7 +171,7 @@ public class Draft_1_6_Case_3_1_1_WithDifference_Minus_Day_NextEdit {
                 double doubleCurrentRate = Double.parseDouble(currentRatePage.replace(",", "."));
                 System.out.println(/*dt + "*/"Курс на " + currentDate + "    " + doubleCurrentRate);
                 // Здесь: Как найти из мапы перепады курса: https://ru.stackoverflow.com/questions/1515527/%d0%9d%d0%b0%d0%b9%d1%82%d0%b8-%d1%80%d0%b5%d1%88%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b2-%d1%86%d0%b8%d0%ba%d0%bb%d0%b5-%d1%81-%d0%b4%d0%b0%d1%82%d0%b0%d0%bc%d0%b8
-                mapRatesInDatesPlusPreviousDay.put(currentDate, doubleCurrentRate);
+                mapRatesInDatesPlusPreviousDay.put(String.valueOf(localDate), doubleCurrentRate);
                 /*ratesList.add(doubleCurrentRate);*/
                 ratesListPlusPreviousDay.add(doubleCurrentRate);
             } else {
@@ -178,6 +194,14 @@ public class Draft_1_6_Case_3_1_1_WithDifference_Minus_Day_NextEdit {
             c.setTime(sdf.parse(dtStr));
             String currentDate;
             currentDate = sdf.format(c.getTime());  // entering current Date
+
+            // Приводим currentDate к формату LocalDate
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate = LocalDate.parse(currentDate, formatter);
+            /*System.out.println(localDate);
+            System.out.println(formatter.format(localDate));*/
+
+
             // Меняем в адресе исходной страницы дату на текующую.
             String urlWithCurrentDate = originalPageText.replaceAll("12/11/2021", currentDate);
 
@@ -189,7 +213,7 @@ public class Draft_1_6_Case_3_1_1_WithDifference_Minus_Day_NextEdit {
                 double doubleCurrentRate = Double.parseDouble(currentRatePage.replace(",", "."));
                 System.out.println(/*dt + "*/"Курс на " + currentDate + "    " + doubleCurrentRate);
                 // Здесь: Как найти из мапы перепады курса: https://ru.stackoverflow.com/questions/1515527/%d0%9d%d0%b0%d0%b9%d1%82%d0%b8-%d1%80%d0%b5%d1%88%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b2-%d1%86%d0%b8%d0%ba%d0%bb%d0%b5-%d1%81-%d0%b4%d0%b0%d1%82%d0%b0%d0%bc%d0%b8
-                mapRatesInDatesPlusPreviousDay.put(currentDate, doubleCurrentRate); // todo удалить
+                mapRatesInDatesPlusPreviousDay.put(String.valueOf(localDate), doubleCurrentRate); // todo удалить
                 /*ratesList.add(doubleCurrentRate);*/
                 ratesListPlusPreviousDay.add(doubleCurrentRate);
             } else {
@@ -278,16 +302,16 @@ public class Draft_1_6_Case_3_1_1_WithDifference_Minus_Day_NextEdit {
 //        с попыткой найти разницу соседних элементов
 //        ```
         System.out.println(); // Добавляем пустую строку, как разделитель
-        List<String> keys = new ArrayList<String>(sortedMap.keySet());
-        Double maxDiffer = sortedMap.get(keys.get(1)) - sortedMap.get(keys.get(0));
+        List<String> keys = new ArrayList<String>(sortedMap2.keySet());
+        Double maxDiffer = sortedMap2.get(keys.get(1)) - sortedMap2.get(keys.get(0));
         String dateOfMaxDiffer = keys.get(0);
-        Double minDiffer = sortedMap.get(keys.get(1)) - sortedMap.get(keys.get(0));
+        Double minDiffer = sortedMap2.get(keys.get(1)) - sortedMap2.get(keys.get(0));
         String dateOfMinDiffer = keys.get(0);
 
         System.out.println("ПЕЧАТЬ ЧЕТВЁРТАЯ");
         for (int i = 0; i < keys.size(); i++) {
             String key = keys.get(i);
-            Double value = sortedMap.get(key);
+            Double value = sortedMap2.get(key);
 /*ЭТО ПЕЧАТЬ ЧЕТВЁРТАЯ*/ System.out.println(key + " / " + value);
         }
         System.out.println(); // Распечатали список, далее пустую строку добавляем
@@ -298,19 +322,19 @@ public class Draft_1_6_Case_3_1_1_WithDifference_Minus_Day_NextEdit {
         System.out.println("ПЕЧАТЬ ПЯТАЯ");
         for (int i = 1; i < keys.size(); i++) {
             String key = keys.get(i);
-            Double value = sortedMap.get(key);
+            Double value = sortedMap2.get(key);
             String keyMinusOne = keys.get(i - 1);
-            Double valueMinusOne = sortedMap.get(keyMinusOne);
+            Double valueMinusOne = sortedMap2.get(keyMinusOne);
 
             Double Differ = (value - valueMinusOne); // = MIN_VALUE;
             DecimalFormat df2 = new DecimalFormat("0.000");
             df2.setRoundingMode(RoundingMode.DOWN);
 /*ЭТО ПЕЧАТЬ ПЯТАЯ*/            System.out.println(df2.format(Differ));
-            if ((sortedMap.get(keys.get(i)) - sortedMap.get(keys.get(i - 1)) > maxDiffer)) {
+            if ((sortedMap2.get(keys.get(i)) - sortedMap2.get(keys.get(i - 1)) > maxDiffer)) {
                 maxDiffer = (value - valueMinusOne);
                 dateOfMaxDiffer = key;
             }
-            if ((sortedMap.get(keys.get(i)) - sortedMap.get(keys.get(i - 1)) < minDiffer)) {
+            if ((sortedMap2.get(keys.get(i)) - sortedMap2.get(keys.get(i - 1)) < minDiffer)) {
                 minDiffer = (value - valueMinusOne);
                 dateOfMinDiffer = key;
             }
