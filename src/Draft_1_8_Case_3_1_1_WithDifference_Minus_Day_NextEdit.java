@@ -22,7 +22,7 @@ import java.util.*;
 // Парсинг ( десериализация ) HTML: https://www.youtube.com/watch?v=R0u8HDEV1vM
 // Парсинг ( десериализация ) HTML тоже: https://youtu.be/wSucpFh7ouk
 // Здесь про Map: https://javarush.com/groups/posts/2542-otvetih-na-samihe-populjarnihe-voprosih-ob-interfeyse-map
-public class Draft_1_7_Case_3_1_1_CONTINUE_FROM_HERE_WithDifference_Minus_Day_NextEdit {
+public class Draft_1_8_Case_3_1_1_WithDifference_Minus_Day_NextEdit {
 
 
 // Как получить все даты в указанном диапазоне  https://devmark.ru/article/all-dates-between-two-dates#header1
@@ -307,8 +307,28 @@ public class Draft_1_7_Case_3_1_1_CONTINUE_FROM_HERE_WithDifference_Minus_Day_Ne
 /*ПЕЧАТЬ ТРЕТЬЯ  */      System.out.println(keys); // TODO Только для проверки вывел на печать ПЕЧАТЬ ТРЕТЬЯ
         Double maxDiffer = sortedMap2.get(keys.get(1)) - sortedMap2.get(keys.get(0));
         String dateOfMaxDiffer = keys.get(0); // TODO Здесь сделать формат вида 28/02/2023
+        String dateOfMaxDifferFormatted = null;
+
+
+//        String[] frs = (keys.get(0)).split("-");
+//        String fr1 = frs[0];
+//        String fr2 = frs[1];
+//        String fr3 = frs[2];
+//        String dateOfMaxDifferFormatted = (fr3 + "/" + fr2 + "/" + fr1);
+//        System.out.println("\nПЕЧАТЬ ТРЕТЬЯ.ДВА");
+///*ПЕЧАТЬ ТРЕТЬЯ.ДВА  */      System.out.println(dateOfMaxDifferFormatted + "\n"); // TODO Здесь сформатированный ключ для второй Мапы
+
+//        String[] frs = dateOfMaxDiffer.split("-");
+//        String fr1 = frs[0];
+//        String fr2 = frs[1];
+//        String fr3 = frs[2];
+//        String dateOfMaxDifferFormatted = (fr3 + "/" + fr2 + "/" + fr1);
+//        System.out.println("\nПЕЧАТЬ ТРЕТЬЯ.ДВА");
+///*ПЕЧАТЬ ТРЕТЬЯ.ДВА  */      System.out.println(dateOfMaxDifferFormatted + "\n"); // TODO Здесь сформатированный ключ для второй Мапы
+
         Double minDiffer = sortedMap2.get(keys.get(1)) - sortedMap2.get(keys.get(0));
         String dateOfMinDiffer = keys.get(0);
+        String dateOfMinDifferFormatted = null;
 
         System.out.println("ПЕЧАТЬ ЧЕТВЁРТАЯ");
         for (int i = 0; i < keys.size(); i++) {
@@ -335,10 +355,23 @@ public class Draft_1_7_Case_3_1_1_CONTINUE_FROM_HERE_WithDifference_Minus_Day_Ne
             if ((sortedMap2.get(keys.get(i)) - sortedMap2.get(keys.get(i - 1)) > maxDiffer)) {
                 maxDiffer = (value - valueMinusOne);
                 dateOfMaxDiffer = key;
+                String[] frs = dateOfMaxDiffer.split("-");
+                String fr1 = frs[0];
+                String fr2 = frs[1];
+                String fr3 = frs[2];
+                dateOfMaxDifferFormatted = (fr3 + "/" + fr2 + "/" + fr1);
+
+
             }
             if ((sortedMap2.get(keys.get(i)) - sortedMap2.get(keys.get(i - 1)) < minDiffer)) {
                 minDiffer = (value - valueMinusOne);
                 dateOfMinDiffer = key;
+                String[] frs = dateOfMinDiffer.split("-");
+                String fr1 = frs[0];
+                String fr2 = frs[1];
+                String fr3 = frs[2];
+                dateOfMinDifferFormatted = (fr3 + "/" + fr2 + "/" + fr1);
+
             }
         }
 
@@ -355,7 +388,7 @@ public class Draft_1_7_Case_3_1_1_CONTINUE_FROM_HERE_WithDifference_Minus_Day_Ne
 
         //СКАЧИВАЕМ СТРАНИЦЫ ИЗ WIKINEWS.
         //СОХРАНЯЕМ СТРАНИЦУ ИЗ ВИКИПЕДИИ MAX
-        String dtStrMax = dateOfMaxDiffer; //Объявляем дату, когда курс максимально вырос
+        String dtStrMax = dateOfMaxDifferFormatted; //Объявляем дату, когда курс максимально вырос TODO Здесь поменять dateOfMaxDiffer на отформатиррованный
         String[] items2 = dtStrMax.split("/");
         String dat2 = items2[0];
         String mon2 = items2[1];
@@ -381,7 +414,7 @@ public class Draft_1_7_Case_3_1_1_CONTINUE_FROM_HERE_WithDifference_Minus_Day_Ne
         String pageWikiOriginChanged1 = downloadWebPage(pageWikiOriginChangedTextMax);
 
         //СОХРАНЯЕМ СТРАНИЦУ ИЗ ВИКИПЕДИИ MIN
-        String dtStrMin = dateOfMinDiffer; //Объявляем дату, когда курс максимально упал
+        String dtStrMin = dateOfMinDifferFormatted; //Объявляем дату, когда курс максимально упал
         String[] items4 = dtStrMin.split("/");
         String dat4 = items4[0];
         String mon4 = items4[1];
